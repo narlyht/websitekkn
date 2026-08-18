@@ -12,8 +12,6 @@ class UmkmSeeder extends Seeder
      */
     public function run(): void
     {
-        Umkm::truncate();
-
         $umkmData = [
             [
                 'name' => 'Nasi Uduk & Ayam Goreng Khas Cikokol',
@@ -48,9 +46,10 @@ class UmkmSeeder extends Seeder
                 'phone' => '082371001161',
                 'hours' => '08.00 - 18.00 WIB',
                 'address' => 'Jl. Pemuda Cikokol No. 44, RT 04 / RW 02, Kelurahan Cikokol, Kota Tangerang',
-                'image' => 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80',
+                'image' => 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80',
                 'images' => [
-                    'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=80',
                     'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80'
                 ],
                 'description' => 'Spesialis servis berkala motor matic, bebek, dan sport. Melayani ganti oli mesin, bersih injeksi, ganti kampas rem, hingga overhaul mesin dengan montir berpengalaman lebih dari 10 tahun.',
@@ -170,7 +169,7 @@ class UmkmSeeder extends Seeder
         ];
 
         foreach ($umkmData as $data) {
-            Umkm::create($data);
+            Umkm::updateOrCreate(['name' => $data['name']], $data);
         }
     }
 }

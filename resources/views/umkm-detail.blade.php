@@ -100,7 +100,7 @@
 
                     <!-- Main Active Image Container -->
                     <div class="relative h-[340px] sm:h-[420px] rounded-2xl overflow-hidden border border-classic-border bg-classic-sand shadow-lg group cursor-pointer" onclick="openLightbox()">
-                        <img id="main-slideshow-img" src="{{ $imageList[0] }}" alt="{{ $umkm->name }}" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"/>
+                        <img id="main-slideshow-img" src="{{ $imageList[0] }}" alt="{{ $umkm->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80';" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"/>
                         
                         <!-- Zoom Hint Overlay -->
                         <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs">
@@ -129,7 +129,7 @@
                         <div class="flex items-center gap-3 mt-4 overflow-x-auto pb-2">
                             @foreach($imageList as $idx => $img)
                                 <button onclick="setSlide({{ $idx }})" class="thumbnail-btn flex-shrink-0 w-20 h-16 rounded-xl overflow-hidden border-2 transition-all duration-300 {{ $idx === 0 ? 'border-classic-gold ring-2 ring-classic-gold/50 scale-105' : 'border-classic-border opacity-70 hover:opacity-100' }}" data-index="{{ $idx }}">
-                                    <img src="{{ $img }}" alt="Thumb {{ $idx + 1 }}" class="w-full h-full object-cover"/>
+                                    <img src="{{ $img }}" alt="Thumb {{ $idx + 1 }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80';" class="w-full h-full object-cover"/>
                                 </button>
                             @endforeach
                         </div>
@@ -175,10 +175,33 @@
                                 <span class="font-bold text-classic-gold text-sm">{{ $umkm->price }}</span>
                             </div>
                             <div class="flex items-start justify-between pt-1">
-                                <span class="text-classic-charcoal/70 font-semibold">Alamat Lengkap:</span>
-                                <span class="font-bold text-classic-green text-right max-w-xs">{{ $umkm->address }}</span>
+                                <span class="text-classic-charcoal/70 font-semibold flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-classic-gold text-sm">location_on</span>
+                                    Alamat Lengkap:
+                                </span>
+                                <a href="{{ $umkm->google_maps_url }}" target="_blank" rel="noopener noreferrer" title="Klik untuk membuka lokasi & petunjuk arah di Google Maps" class="font-bold text-classic-green text-right max-w-xs hover:text-classic-gold hover:underline flex items-start justify-end gap-1 group transition-all">
+                                    <span>{{ $umkm->address }}</span>
+                                    <span class="material-symbols-outlined text-xs text-classic-gold mt-0.5 group-hover:translate-x-0.5 transition-transform">open_in_new</span>
+                                </a>
                             </div>
                         </div>
+
+                        <!-- Direct Google Maps Direction Link -->
+                        <a href="{{ $umkm->google_maps_url }}" target="_blank" rel="noopener noreferrer" class="w-full bg-white hover:bg-classic-sand/70 text-classic-green py-3 px-4 rounded-xl border border-classic-border font-bold text-xs flex items-center justify-between shadow-sm transition-all hover:border-classic-gold hover:shadow group mb-6">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-lg bg-classic-green/10 text-classic-green flex items-center justify-center group-hover:bg-classic-green group-hover:text-classic-cream transition-colors">
+                                    <span class="material-symbols-outlined text-lg">map</span>
+                                </div>
+                                <div class="text-left">
+                                    <span class="block text-classic-charcoal font-bold group-hover:text-classic-green">Petunjuk Arah Google Maps</span>
+                                    <span class="block text-[10px] text-classic-charcoal/60 font-normal">Buka rute navigasi dan titik lokasi persis</span>
+                                </div>
+                            </div>
+                            <span class="flex items-center gap-1 text-classic-gold text-xs font-bold bg-classic-sand/60 px-2.5 py-1 rounded-md border border-classic-border/80 group-hover:bg-classic-gold group-hover:text-classic-dark transition-all">
+                                <span>Buka Maps</span>
+                                <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                            </span>
+                        </a>
 
                         <!-- Product List Table/Grid -->
                         @if($umkm->products && count($umkm->products) > 0)

@@ -61,6 +61,9 @@ class AdminUmkmController extends Controller
             'phone' => 'required|string',
             'hours' => 'required|string',
             'address' => 'required|string',
+            'latitude' => 'nullable|string',
+            'longitude' => 'nullable|string',
+            'maps_url' => 'nullable|string',
             'description' => 'required|string',
             'image_files.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ]);
@@ -124,6 +127,9 @@ class AdminUmkmController extends Controller
             'phone' => 'required|string',
             'hours' => 'required|string',
             'address' => 'required|string',
+            'latitude' => 'nullable|string',
+            'longitude' => 'nullable|string',
+            'maps_url' => 'nullable|string',
             'description' => 'required|string',
             'image_files.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ]);

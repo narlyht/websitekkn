@@ -238,7 +238,7 @@
                     <div class="umkm-card card-hover-effect group bg-white rounded-2xl overflow-hidden border border-classic-border shadow-sm flex flex-col justify-between cursor-pointer" data-rw="{{ $item->rw }}" onclick="window.location.href='{{ route('umkm.show', ['id' => $item->id]) }}'">
                         <div>
                             <div class="relative h-56 overflow-hidden bg-classic-sand">
-                                <img src="{{ $item->image }}" alt="{{ $item->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                                <img src="{{ $item->image }}" alt="{{ $item->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80';" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
                                 <span class="absolute top-3 left-3 bg-classic-green text-classic-cream text-xs px-3 py-1 rounded-md font-bold shadow-md border border-classic-gold/40">
                                     {{ $item->rw }} Cikokol
                                 </span>

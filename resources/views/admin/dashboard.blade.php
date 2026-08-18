@@ -124,7 +124,7 @@
                         <tr class="admin-row hover:bg-classic-cream/50 transition-colors" data-name="{{ strtolower($item->name) }}" data-owner="{{ strtolower($item->owner) }}">
                             <td class="p-4">
                                 <div class="flex items-center gap-3">
-                                    <img src="{{ $item->image }}" alt="{{ $item->name }}" class="w-12 h-12 rounded-lg object-cover border border-classic-border bg-classic-sand"/>
+                                    <img src="{{ $item->image }}" alt="{{ $item->name }}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80';" class="w-12 h-12 rounded-lg object-cover border border-classic-border bg-classic-sand"/>
                                     <div>
                                         <a href="{{ route('umkm.show', ['id' => $item->id]) }}" target="_blank" class="font-classic text-lg font-bold text-classic-green hover:underline block leading-tight">
                                             {{ $item->name }}

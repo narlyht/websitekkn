@@ -19,6 +19,9 @@ class Umkm extends Model
         'phone',
         'hours',
         'address',
+        'latitude',
+        'longitude',
+        'maps_url',
         'image',
         'images',
         'description',
@@ -29,6 +32,20 @@ class Umkm extends Model
         'products' => 'array',
         'images' => 'array',
     ];
+
+    /**
+     * Accessor to get Google Maps URL for this UMKM.
+     */
+    public function getGoogleMapsUrlAttribute(): string
+    {
+        if (!empty($this->maps_url)) {
+            return $this->maps_url;
+        }
+        if (!empty($this->latitude) && !empty($this->longitude)) {
+            return "https://www.google.com/maps?q={$this->latitude},{$this->longitude}";
+        }
+        return "https://www.google.com/maps/search/?api=1&query=" . urlencode($this->name . ' ' . $this->address);
+    }
 
     /**
      * Accessor to get array of all images (up to 5) with fallback.
